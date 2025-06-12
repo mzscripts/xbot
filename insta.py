@@ -25,7 +25,7 @@ SESSION_FILE = "session.json"
 
 # === Directories and Files ===
 IMG_DIR = "img"
-CAPTION_FILE = "instagram_captions.json"
+CAPTION_FILE = "captions.json"
 Path(IMG_DIR).mkdir(parents=True, exist_ok=True)
 
 # === Load Captions from JSON ===

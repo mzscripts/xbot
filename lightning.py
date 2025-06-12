@@ -11,25 +11,16 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 load_dotenv()
 
 # === Prepare image directory ===
-IMG_DIR = "Lightning"
+IMG_DIR = "girls"
 Path(IMG_DIR).mkdir(parents=True, exist_ok=True)
 
 # === Load prompts ===
 try:
-    with open("prompts_2000.json", "r", encoding="utf-8") as f:
+    with open("girl.json", "r", encoding="utf-8") as f:
         prompts = json.load(f)
 except FileNotFoundError:
     print("❌ prompts.json not found.")
     exit(1)
-
-# === Function to save updated prompts to JSON ===
-def save_prompts(prompts_list, filename="prompts_2000.json"):
-    try:
-        with open(filename, "w", encoding="utf-8") as f:
-            json.dump(prompts_list, f, indent=4)
-        print(f"📝 Updated prompts saved to {filename}")
-    except Exception as e:
-        print(f"❌ Failed to save prompts to {filename}: {e}")
 
 # === Function to generate and save image for a single prompt ===
 def generate_image(prompt, prompts_list):
@@ -46,9 +37,9 @@ def generate_image(prompt, prompts_list):
         print(f"🖼️ Image saved: {img_filename}")
         
         # Remove the prompt from the prompts list
-        prompts_list[:] = [p for p in prompts_list if p["prompt_id"] != prompt_id]
+        # prompts_list[:] = [p for p in prompts_list if p["prompt_id"] != prompt_id]
         # Save the updated prompts list to the JSON file
-        save_prompts(prompts_list)
+        # save_prompts(prompts_list)
         print(f"🗑️ Prompt {prompt_id} removed from prompts_2000.json")
         
         return True

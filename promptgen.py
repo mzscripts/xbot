@@ -2,159 +2,170 @@ import random
 import json
 # Expanded lists for randomization
 locations = [
-    "Uttarakhand", "Rajasthan", "Goa", "Mumbai", "Delhi", 
-    "Kerala", "Sundarbans", "Bangalore", "Kolkata", "Himalayas",
-    "Ladakh", "Tamil Nadu", "Andaman Islands", "Jaipur", "Varanasi",
-    "Hampi", "Darjeeling", "Chennai", "Pondicherry", "Rann of Kutch",
-    "Amritsar", "Hyderabad", "Assam", "Meghalaya", "Kochi"
-]
-times_of_day = [
-    "sunrise", "morning", "noon", "afternoon", "sunset", 
-    "evening", "night", "midnight", "dawn", "twilight", 
-    "early morning", "late afternoon", "dusk", "late night"
-]
-weather_conditions = [
-    "sunny", "cloudy", "rainy", "foggy", "snowy", "windy", "stormy",
-    "humid", "crisp", "overcast", "misty", "clear", "tropical"
-]
-adjectives = [
-    "serene", "vibrant", "bustling", "tranquil", "majestic", 
-    "picturesque", "lively", "calm", "dramatic", "enchanting",
-    "ethereal", "radiant", "mystical", "pristine", "exotic", 
-    "dynamic", "peaceful", "grand", "breathtaking", "festive"
-]
-sensory_details = [
-    "sound of a shepherd’s flute", "aroma of sweets", 
-    "scent of fresh jalebis", "salty scent of the river", 
-    "chirping of birds", "rustling of leaves", "crashing of waves",
-    "fragrance of jasmine flowers", "hum of a distant festival",
-    "crackle of a bonfire", "whistle of the wind through mountains",
-    "scent of sandalwood", "clinking of temple bells", "murmur of a crowd"
+    "Kashmir Valley", "Gujarat", "Lakshadweep", "Pune", "Agra",
+    "Karnataka", "Brahmaputra River", "Mysore", "Guwahati", "Western Ghats",
+    "Spiti Valley", "Andhra Pradesh", "Nicobar Islands", "Udaipur", "Jaisalmer",
+    "Khajuraho", "Munnar", "Madurai", "Auroville", "Thar Desert",
+    "Srinagar", "Ahmedabad", "Nagaland", "Sikkim", "Alleppey"
 ]
 
-# Expanded category-specific elements
+times_of_day = [
+    "daybreak", "mid-morning", "midday", "late morning", "golden hour",
+    "twilight", "late evening", "after midnight", "early dawn", "evening glow",
+    "pre-dawn", "early afternoon", "nightfall", "wee hours"
+]
+
+weather_conditions = [
+    "bright", "hazy", "showery", "misty", "frosty", "breezy", "thunderous",
+    "sultry", "chilly", "partly cloudy", "dewy", "sparkling", "balmy"
+]
+
+adjectives = [
+    "peaceful", "luminous", "energetic", "soothing", "regal",
+    "charming", "spirited", "quiet", "striking", "magical",
+    "dreamy", "vivid", "mysterious", "untouched", "alluring",
+    "lively", "harmonious", "imposing", "stunning", "joyful"
+]
+
+sensory_details = [
+    "melody of a sitar in the distance", "aroma of brewing chai",
+    "scent of blooming lotuses", "briny breeze from the ocean",
+    "twittering of sparrows", "swaying of palm fronds", "roar of a distant waterfall",
+    "fragrance of marigold garlands", "echoes of a street musician’s flute",
+    "crackling of dry leaves underfoot", "howl of a desert wind",
+    "scent of freshly baked naan", "chiming of anklets in a dance",
+    "buzz of a lively marketplace"
+]
+
+# Category-specific elements
 nature_main_elements = [
-    "mountain valley with a crystal-clear lake reflecting snow-capped peaks",
-    "dense forest with ancient trees and a carpet of wildflowers",
-    "majestic waterfall cascading down a rocky cliff",
-    "tranquil beach with golden sand and turquoise waters",
-    "rolling hills covered in lush green tea plantations",
-    "vibrant coral reef teeming with tropical fish",
-    "golden desert dunes under a starlit sky",
-    "bamboo forest with a hidden temple in the mist",
-    "snow-covered meadow with grazing yaks",
-    "mangrove-lined river with a Bengal tiger on the shore"
+    "lush valley with a meandering river and grazing deer",
+    "ancient banyan grove with hanging roots and chirping parrots",
+    "towering sand dunes casting dramatic shadows at dusk",
+    "pristine lagoon fringed with coconut palms",
+    "sprawling vineyards under a golden sunrise",
+    "jagged cliffs overlooking a stormy sea",
+    "frosty alpine meadow dotted with wild herbs",
+    "moss-covered canyon with a trickling stream",
+    "blooming orchid garden under a misty sky",
+    "wetland with flamingos wading in shallow waters"
 ]
 
 people_main_elements = [
-    "group of women in colorful saris dancing at a festival",
-    "fishermen unloading their catch at a bustling market",
-    "children playing cricket in a dusty village street",
-    "artisans crafting intricate pottery in a sunlit workshop",
-    "farmers harvesting golden wheat under a clear blue sky",
-    "street vendors selling spicy chaat in a crowded bazaar",
-    "monks chanting in a Himalayan monastery",
-    "tribal dancers performing in traditional attire",
-    "yoga practitioners meditating on a riverbank",
-    "weavers creating vibrant silk sarees on handlooms"
+    "elders sharing stories around a village bonfire",
+    "merchants haggling in a vibrant spice market",
+    "students practicing kathak dance in an open courtyard",
+    "potters shaping clay on spinning wheels",
+    "nomads herding camels across a desert expanse",
+    "pilgrims bathing in a sacred river at dawn",
+    "musicians playing folk tunes at a rural fair",
+    "women embroidering intricate patterns in a cooperative",
+    "kids flying kites on a windy hilltop",
+    "vendors grilling kebabs at a bustling night market"
 ]
 
 bollywood_celebrities = [
-    "Shah Rukh Khan", "Amitabh Bachchan", "Deepika Padukone", 
-    "Ranveer Singh", "Priyanka Chopra", "Salman Khan", "Aishwarya Rai",
-    "Hrithik Roshan", "Kangana Ranaut", "Ranbir Kapoor", "Anushka Sharma",
-    "Akshay Kumar", "Vidya Balan", "Ayushmann Khurrana"
+    "Ranbir Kapoor", "Alia Bhatt", "Varun Dhawan", "Katrina Kaif",
+    "Saif Ali Khan", "Kareena Kapoor", "Vicky Kaushal", "Ananya Panday",
+    "Shahid Kapoor", "Kiara Advani", "Tiger Shroff", "Janhvi Kapoor",
+    "Sidharth Malhotra", "Disha Patani"
 ]
+
 hollywood_celebrities = [
-    "Tom Holland", "Scarlett Johansson", "Dwayne Johnson", 
-    "Emma Watson", "Chris Hemsworth", "Robert Downey Jr.", "Margot Robbie",
-    "Leonardo DiCaprio", "Zendaya", "Ryan Reynolds", "Gal Gadot",
-    "Brad Pitt", "Angelina Jolie", "Chris Evans"
+    "Chris Pratt", "Natalie Portman", "Tom Hanks", "Emma Stone",
+    "Ryan Gosling", "Charlize Theron", "Hugh Jackman", "Florence Pugh",
+    "Keanu Reeves", "Meryl Streep", "Johnny Depp", "Anne Hathaway",
+    "Jake Gyllenhaal", "Zendaya"
 ]
+
 celebrity_actions = [
-    "standing atop a moving train in an action scene",
-    "performing a dramatic monologue on a grand stage",
-    "walking the red carpet at a glamorous event",
-    "filming a romantic scene in a picturesque location",
-    "signing autographs for adoring fans",
-    "dancing energetically in a vibrant musical number",
-    "riding a horse in an epic chase sequence",
-    "posing for a photoshoot in a luxurious setting",
-    "delivering a speech at a grand award ceremony",
-    "training for a high-octane stunt scene"
+    "rehearsing for a high-energy dance sequence",
+    "delivering an emotional speech in a courtroom scene",
+    "attending a charity gala in a dazzling outfit",
+    "filming a chase scene through crowded streets",
+    "posing for a magazine cover in a scenic backdrop",
+    "performing a stunt on a helicopter",
+    "singing a soulful ballad in a recording studio",
+    "walking through a film set in period costume",
+    "greeting fans at a movie premiere",
+    "training in martial arts for an action role"
 ]
 
 historical_events = [
-    "coronation of Chhatrapati Shivaji Maharaj at Raigad Fort",
-    "Indian Independence Day celebration in 1947",
-    "Battle of Panipat with warriors in traditional armor",
-    "Construction of the Taj Mahal in Agra",
-    "Gandhi's Salt March in 1930",
-    "Vedic scholars chanting mantras in ancient Varanasi",
-    "Ashoka’s victory at Kalinga in 261 BCE",
-    "Rani Lakshmibai leading her troops in the 1857 rebellion",
-    "Buddha attaining enlightenment under the Bodhi tree",
-    "Akbar’s court in Fatehpur Sikri with scholars debating"
+    "Jallianwala Bagh gathering in 1919",
+    "Coronation of Maharana Pratap in Mewar",
+    "First train journey in India in 1853",
+    "Construction of Qutub Minar in Delhi",
+    "Tagore composing the national anthem in 1911",
+    "Ancient artisans carving Ellora caves",
+    "Tipu Sultan’s battle against the British in 1799",
+    "Dandi Salt March led by Gandhi in 1930",
+    "Chandragupta Maurya’s coronation in 321 BCE",
+    "Ramanujan presenting mathematical theorems in 1914"
 ]
 
 car_models = [
-    "Ferrari 488", "Lamborghini Aventador", "Tesla Model S", 
-    "BMW i8", "Porsche 911", "Bugatti Chiron", "Mercedes-Benz AMG",
-    "Audi R8", "McLaren P1", "Rolls-Royce Phantom", "Jaguar F-Type",
-    "Aston Martin DB11", "Nissan GT-R", "Ford Mustang Mach-E"
+    "Porsche Taycan", "Lamborghini Huracán", "Tesla Model 3",
+    "Ferrari SF90", "BMW M5", "McLaren 720S", "Mercedes-Benz G-Class",
+    "Audi e-tron GT", "Bentley Continental", "Rolls-Royce Cullinan",
+    "Jaguar I-PACE", "Aston Martin Vantage", "Lexus LC 500", "Chevrolet Corvette"
 ]
+
 car_settings = [
-    "speeding through neon-lit streets at midnight",
-    "parked elegantly at a luxury hotel entrance",
-    "racing on a winding mountain road",
-    "displayed at a high-profile auto show",
-    "cruising along a coastal highway at sunset",
-    "drifting around corners in a desert rally",
-    "parked beside a serene lake with mountains in the background",
-    "revving up at a futuristic car launch event",
-    "navigating a bustling city street during rush hour",
-    "gleaming under the lights of a grand showroom"
+    "gliding through a misty forest road at dawn",
+    "parked in front of a grand palace",
+    "speeding across a salt flat under a blazing sun",
+    "showcased at a futuristic car expo",
+    "cruising along a cliffside road at twilight",
+    "racing through a tunnel with glowing lights",
+    "parked on a cobblestone street in an old town",
+    "revving up at a desert car rally",
+    "navigating a snowy mountain pass",
+    "displayed in a sleek urban showroom"
 ]
 
 cartoon_characters = [
-    "Chhota Bheem", "Motu Patlu", "Shinchan", "Doraemon", "Tom and Jerry",
-    "Mickey Mouse", "Bugs Bunny", "Krishna Kanhaiya", "Oggy and the Cockroaches",
-    "Powerpuff Girls", "Ben 10", "Phineas and Ferb", "Scooby-Doo"
+    "Little Krishna", "Bal Hanuman", "Roll No. 21", "Mighty Raju",
+    "Noddy", "Peppa Pig", "SpongeBob SquarePants", "Simba the Lion",
+    "Paw Patrol", "Dora the Explorer", "Mr. Bean (animated)", "Gattu Battu",
+    "Vir: The Robot Boy"
 ]
+
 cartoon_activities = [
-    "playing kabaddi in a dusty village field",
-    "embarking on a treasure hunt in a mysterious jungle",
-    "solving a puzzle in a colorful animated world",
-    "enjoying a picnic with friends in a sunny meadow",
-    "competing in a fun-filled sports tournament",
-    "building a quirky invention in a vibrant workshop",
-    "chasing a mischievous villain through a bustling town",
-    "performing in a lively cartoon talent show",
-    "exploring a magical forest with glowing creatures",
-    "riding a rollercoaster in a whimsical amusement park"
+    "racing bicycles in a colorful village",
+    "searching for a hidden treasure in a pirate ship",
+    "building a sandcastle on a sunny beach",
+    "solving a mystery in a spooky mansion",
+    "playing hide-and-seek in a magical garden",
+    "performing in a lively school talent show",
+    "exploring a glowing cave with friendly creatures",
+    "flying kites in a vibrant festival",
+    "baking a giant cake in a whimsical kitchen",
+    "competing in a quirky robot-building contest"
 ]
 
 superheroes = [
-    "Spider-Man", "Wonder Woman", "Iron Man", "Captain America", "Black Panther",
-    "Superman", "Batman", "Thor", "Hulk", "Captain Marvel", "Aquaman",
-    "The Flash", "Green Lantern", "Doctor Strange"
+    "Black Widow", "Wolverine", "Hawkeye", "Shang-Chi", "Storm",
+    "Deadpool", "Ant-Man", "Vision", "Scarlet Witch", "Falcon",
+    "Green Arrow", "Black Canary", "Nightwing", "Iron Fist"
 ]
+
 superhero_actions = [
-    "swinging between palm trees on a beach",
-    "standing atop a historical monument, ready to leap into action",
-    "flying over a city skyline at dusk",
-    "training in a high-tech facility",
-    "leading a team of heroes into battle",
-    "defending a village from a cosmic threat",
-    "racing through a jungle to rescue a lost expedition",
-    "unveiling a new suit in a futuristic lab",
-    "battling a villain atop a skyscraper",
-    "patrolling a city under a starry sky"
+    "leaping across rooftops in a moonlit city",
+    "training with a master in a hidden dojo",
+    "flying through a stormy sky to stop a disaster",
+    "defending a fortress from an alien invasion",
+    "rescuing villagers from a collapsing bridge",
+    "unveiling a new gadget in a secret lab",
+    "battling a robot army in a futuristic city",
+    "patrolling a desert outpost at night",
+    "chasing a villain through a crowded festival",
+    "standing guard atop a sacred temple"
 ]
 
 # List of categories (unchanged)
 categories = [
-    "nature", "people", "bollywood", "hollywood", "history", 
+    "nature", "people", "bollywood", "hollywood", "history",
     "cars", "cartoons", "superheroes"
 ]
 # Define the base template for prompts
@@ -224,7 +235,7 @@ def generate_prompt(prompt_id, used_descriptions):
     return {"prompt_id": prompt_id, "description": description}
 
 # Generate 2000 prompts
-num_prompts = 2000
+num_prompts = 1000
 used_descriptions = set()
 prompts = []
 for i in range(num_prompts):
@@ -232,7 +243,7 @@ for i in range(num_prompts):
     prompts.append(prompt)
 
 # Save to JSON file
-output_file = "prompts_2000.json"
+output_file = "prompts_1000.json"
 with open(output_file, "w") as f:
     json.dump(prompts, f, indent=2)
 
