@@ -39,10 +39,10 @@ except tweepy.TweepyException as e:
 
 # === Load and Pick Random Prompt ===
 try:
-    with open("girl.json", "r", encoding="utf-8") as f:
+    with open("InstagramPrompts.json", "r", encoding="utf-8") as f:
         prompts = json.load(f)
         if not prompts:
-            logger.error("No prompts available in girl.json")
+            logger.error("No prompts available in InstagramPrompts.json")
             raise ValueError("Empty prompts list")
         selected_prompt = random.choice(prompts)
         prompt_id = selected_prompt["prompt_id"]
@@ -52,7 +52,7 @@ try:
             raise ValueError("Invalid prompt structure")
         logger.info(f"Selected prompt {prompt_id}: {description[:50]}...")
 except FileNotFoundError:
-    logger.error("girl.json not found")
+    logger.error("InstagramPrompts.json not found")
     raise
 except (ValueError, KeyError) as e:
     logger.error(f"Invalid prompt data: {e}")
