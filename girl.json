@@ -1,0 +1,252 @@
+[
+  {
+      "prompt_id": 1,
+      "category": "Nature",
+      "description": "A serene alpine valley at sunrise, with mist gently rising from a crystal-clear lake surrounded by snow-capped mountains and vibrant wildflowers."
+  },
+  {
+      "prompt_id": 2,
+      "category": "Nature",
+      "description": "A dense tropical rainforest with towering trees, lush green foliage, colorful parrots flying through the canopy, and a cascading waterfall in the background."
+  },
+  {
+      "prompt_id": 3,
+      "category": "Nature",
+      "description": "A tranquil desert scene at twilight, with golden sand dunes casting dramatic shadows and a star-filled sky reflecting on a small oasis."
+  },
+  {
+      "prompt_id": 4,
+      "category": "Nature",
+      "description": "A frozen tundra under the aurora borealis, with vibrant green and purple lights dancing across a snowy landscape and distant icebergs."
+  },
+  {
+      "prompt_id": 5,
+      "category": "Nature",
+      "description": "A vibrant autumn forest with trees in shades of red, orange, and yellow, a winding path covered in fallen leaves, and soft sunlight filtering through."
+  },
+  {
+      "prompt_id": 6,
+      "category": "Abstract",
+      "description": "A swirling vortex of neon blue and magenta geometric shapes, with intricate patterns and glowing edges against a dark cosmic background."
+  },
+  {
+      "prompt_id": 7,
+      "category": "Abstract",
+      "description": "A minimalist composition of overlapping translucent spheres in pastel pink, mint green, and lavender, floating on a smooth white background."
+  },
+  {
+      "prompt_id": 8,
+      "category": "Abstract",
+      "description": "A dynamic explosion of vibrant red, yellow, and blue paint splashes, with fluid brushstrokes blending into a textured black canvas."
+  },
+  {
+      "prompt_id": 9,
+      "category": "Abstract",
+      "description": "A grid of interlocking metallic cubes with reflective surfaces, illuminated by soft teal and purple ambient lighting, creating a futuristic aesthetic."
+  },
+  {
+      "prompt_id": 10,
+      "category": "Abstract",
+      "description": "A flowing wave of golden and silver particles, shimmering against a deep navy background, evoking a sense of cosmic energy."
+  },
+  {
+      "prompt_id": 11,
+      "category": "Sci-Fi",
+      "description": "A futuristic cityscape on a distant planet, with towering neon-lit skyscrapers, flying vehicles, and a glowing red moon in the sky."
+  },
+  {
+      "prompt_id": 12,
+      "category": "Sci-Fi",
+      "description": "A space station orbiting a vibrant gas giant, with intricate mechanical details, glowing blue thrusters, and distant stars visible through a nebula."
+  },
+  {
+      "prompt_id": 13,
+      "category": "Sci-Fi",
+      "description": "An astronaut floating in deep space, with a reflective visor showing a distant galaxy filled with swirling colors and bright stars."
+  },
+  {
+      "prompt_id": 14,
+      "category": "Sci-Fi",
+      "description": "A cyberpunk alley illuminated by flickering holographic signs, with wet pavement reflecting neon pink and blue lights and a misty atmosphere."
+  },
+  {
+      "prompt_id": 15,
+      "category": "Sci-Fi",
+      "description": "A massive interstellar mothership hovering above a barren alien landscape, with glowing green energy fields and intricate technological details."
+  },
+  {
+      "prompt_id": 16,
+      "category": "Fantasy",
+      "description": "A mystical forest with glowing bioluminescent mushrooms, ethereal fairies floating among ancient trees, and a soft blue mist enveloping the scene."
+  },
+  {
+      "prompt_id": 17,
+      "category": "Fantasy",
+      "description": "A majestic dragon perched atop a rocky cliff, its scales shimmering in shades of emerald and gold under a stormy sky with lightning flashes."
+  },
+  {
+      "prompt_id": 18,
+      "category": "Fantasy",
+      "description": "A floating castle surrounded by clouds, with golden spires, cascading waterfalls, and vibrant rainbows arching across a pastel sky."
+  },
+  {
+      "prompt_id": 19,
+      "category": "Fantasy",
+      "description": "A sorceress casting a spell, surrounded by swirling arcane runes and glowing purple energy, set against a backdrop of ancient ruins."
+  },
+  {
+      "prompt_id": 20,
+      "category": "Fantasy",
+      "description": "A mythical phoenix rising from glowing embers, its fiery wings spread wide against a twilight sky filled with hues of orange and purple."
+  },
+  {
+      "prompt_id": 21,
+      "category": "Marine",
+      "description": "A vibrant coral reef teeming with colorful tropical fish, sea turtles, and sunlight filtering through the water."
+  },
+  {
+      "prompt_id": 22,
+      "category": "Marine",
+      "description": "A deep-sea scene with bioluminescent creatures, glowing jellyfish, and a sunken shipwreck covered in coral under a dark blue ocean."
+  },
+  {
+      "prompt_id": 23,
+      "category": "Marine",
+      "description": "A tranquil beach at sunset, with gentle waves lapping at the shore, golden sand, and a sky painted in shades of pink and orange."
+  },
+  {
+      "prompt_id": 24,
+      "category": "Marine",
+      "description": "A pod of dolphins leaping gracefully from the ocean, with sparkling water droplets and a distant horizon under a clear blue sky."
+  },
+  {
+      "prompt_id": 25,
+      "category": "Marine",
+      "description": "An underwater cave illuminated by shafts of light, with colorful fish swimming through vibrant coral formations and glowing algae."
+  },
+  {
+      "prompt_id": 26,
+      "category": "Urban",
+      "description": "A bustling city skyline at night, with towering skyscrapers adorned with colorful lights and a reflection on a calm river below."
+  },
+  {
+      "prompt_id": 27,
+      "category": "Urban",
+      "description": "A quiet cobblestone street in a European town at dusk, with warm streetlights, cozy cafes, and a soft purple sky."
+  },
+  {
+      "prompt_id": 28,
+      "category": "Urban",
+      "description": "A futuristic metropolis with sleek glass buildings, elevated walkways, and vibrant holographic billboards under a starry sky."
+  },
+  {
+      "prompt_id": 29,
+      "category": "Urban",
+      "description": "A rainy city street at night, with neon reflections on wet pavement, umbrellas, and glowing shop signs in a vibrant urban scene."
+  },
+  {
+      "prompt_id": 30,
+      "category": "Urban",
+      "description": "A rooftop view of a city during golden hour, with warm sunlight casting long shadows over skyscrapers and a distant mountain range."
+  },
+  {
+      "prompt_id": 31,
+      "category": "Space",
+      "description": "A vibrant nebula with swirling clouds of pink, purple, and blue, dotted with sparkling stars and a distant glowing planet."
+  },
+  {
+      "prompt_id": 32,
+      "category": "Space",
+      "description": "A close-up of a ringed planet with intricate cloud patterns, surrounded by glowing moons and a starry black void."
+  },
+  {
+      "prompt_id": 33,
+      "category": "Space",
+      "description": "A view from a spaceship’s cockpit, showing a vibrant galaxy with spiraling arms and a glowing supernova in the distance."
+  },
+  {
+      "prompt_id": 34,
+      "category": "Space",
+      "description": "A lone asteroid floating in space, with a distant sun casting dramatic shadows and a colorful cosmic background."
+  },
+  {
+      "prompt_id": 35,
+      "category": "Space",
+      "description": "A black hole with an glowing accretion disk, surrounded by warped light and distant stars in a mesmerizing cosmic scene."
+  },
+  {
+      "prompt_id": 36,
+      "category": "Historical",
+      "description": "An ancient Egyptian pyramid under a starry desert sky, with golden sand and a glowing moon illuminating hieroglyph-covered ruins."
+  },
+  {
+      "prompt_id": 37,
+      "category": "Historical",
+      "description": "A medieval castle on a hill, surrounded by lush green fields, with knights in armor and a vibrant sunset in the background."
+  },
+  {
+      "prompt_id": 38,
+      "category": "Historical",
+      "description": "A bustling ancient Roman marketplace, with colorful stalls, marble columns, and citizens in togas under a clear blue sky."
+  },
+  {
+      "prompt_id": 39,
+      "category": "Historical",
+      "description": "A samurai standing on a cherry blossom-covered hill, with a traditional Japanese pagoda and Mount Fuji in the distance."
+  },
+  {
+      "prompt_id": 40,
+      "category": "Historical",
+      "description": "A Viking longship sailing through a stormy sea, with dramatic clouds, crashing waves, and a glowing horizon."
+  },
+  {
+      "prompt_id": 41,
+      "category": "Surreal",
+      "description": "A floating island with vibrant flowers and waterfalls, suspended in a dreamy sky filled with pastel clouds and flying birds."
+  },
+  {
+      "prompt_id": 42,
+      "category": "Surreal",
+      "description": "A giant clock melting over a desert landscape, with surreal colors and distorted shapes inspired by Salvador Dalí."
+  },
+  {
+      "prompt_id": 43,
+      "category": "Surreal",
+      "description": "A staircase spiraling into a starry sky, with floating books and glowing lanterns in a dreamlike, endless void."
+  },
+  {
+      "prompt_id": 44,
+      "category": "Surreal",
+      "description": "A fishbowl with a miniature city inside, surrounded by glowing bubbles and a cosmic background of swirling galaxies."
+  },
+  {
+      "prompt_id": 45,
+      "category": "Surreal",
+      "description": "A tree with leaves made of colorful glass, reflecting light in a surreal forest with floating orbs and a misty atmosphere."
+  },
+  {
+      "prompt_id": 46,
+      "category": "Minimalist",
+      "description": "A single bonsai tree in a sleek black pot, centered on a smooth gradient background transitioning from soft gray to white."
+  },
+  {
+      "prompt_id": 47,
+      "category": "Minimalist",
+      "description": "A lone sailboat on a calm sea, with a minimalist horizon line and a sky in soft shades of blue and pink."
+  },
+  {
+      "prompt_id": 48,
+      "category": "Minimalist",
+      "description": "A single glowing lantern floating on a reflective lake, surrounded by a dark, starry sky with minimalistic silhouettes of trees."
+  },
+  {
+      "prompt_id": 49,
+      "category": "Minimalist",
+      "description": "A geometric mountain silhouette in deep blue, set against a soft peach sunset with clean, sharp lines."
+  },
+  {
+      "prompt_id": 50,
+      "category": "Minimalist",
+      "description": "A single white lotus flower floating on a dark pond, with subtle ripples and a soft gradient sky in pastel tones."
+  }
+]
