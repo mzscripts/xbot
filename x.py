@@ -2,7 +2,6 @@ import tweepy
 import json
 import os
 import requests
-import random
 from urllib.parse import quote
 from io import BytesIO
 import logging
@@ -37,20 +36,13 @@ except tweepy.TweepyException as e:
     logger.error(f"Failed to initialize Tweepy: {e}")
     raise
 
-# === Load and Pick Random Prompt ===
+# === Load Prompts ===
 try:
-    with open("InstagramPrompts.json", "r", encoding="utf-8") as f:
+    with open("IgPrompts900.json", "r", encoding="utf-8") as f:
         prompts = json.load(f)
         if not prompts:
             logger.error("No prompts available in InstagramPrompts.json")
             raise ValueError("Empty prompts list")
-        selected_prompt = random.choice(prompts)
-        prompt_id = selected_prompt["prompt_id"]
-        description = selected_prompt["description"]
-        if not (prompt_id and description):
-            logger.error("Selected prompt missing prompt_id or description")
-            raise ValueError("Invalid prompt structure")
-        logger.info(f"Selected prompt {prompt_id}: {description[:50]}...")
 except FileNotFoundError:
     logger.error("InstagramPrompts.json not found")
     raise
@@ -58,8 +50,31 @@ except (ValueError, KeyError) as e:
     logger.error(f"Invalid prompt data: {e}")
     raise
 
+# === Load Last Used Prompt Index ===
+last_prompt_file = "last_prompt.txt"
+
+if not os.path.exists(last_prompt_file):
+    with open(last_prompt_file, "w") as f:
+        f.write("0")
+
+with open(last_prompt_file, "r") as f:
+    last_index = int(f.read().strip())
+
+# === Get Next Prompt ===
+next_index = last_index + 1
+
+if next_index >= len(prompts):
+    logger.info("All prompts have been used. Resetting to start.")
+    next_index = 0
+
+selected_prompt = prompts[next_index]
+prompt_id = selected_prompt["prompt_id"]
+description = selected_prompt["description"]
+
+logger.info(f"Using prompt {next_index + 1} (Prompt ID: {prompt_id}): {description[:50]}...")
+
 # === Prepare Tweet Text ===
-tweet_text = description
+tweet_text = f"({next_index + 1}) {description}"
 if len(tweet_text) > 280:
     tweet_text = tweet_text[:277] + "..."
 
@@ -98,5 +113,9 @@ try:
 except tweepy.TweepyException as e:
     logger.error(f"Failed to post tweet: {e}")
     raise
+
+# === Update Last Used Prompt ===
+with open(last_prompt_file, "w") as f:
+    f.write(str(next_index))
 
 logger.info("Script execution finished successfully")
