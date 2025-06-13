@@ -6,6 +6,7 @@ from urllib.parse import quote
 from io import BytesIO
 import logging
 from time import sleep
+from supabase import create_client
 
 # === Setup Logging ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -17,6 +18,8 @@ try:
     API_SECRET = os.environ["API_SECRET"]
     ACCESS_TOKEN = os.environ["ACCESS_TOKEN"]
     ACCESS_TOKEN_SECRET = os.environ["ACCESS_TOKEN_SECRET"]
+    SUPABASE_URL = os.environ["SUPABASE_URL"]
+    SUPABASE_KEY = os.environ["SUPABASE_KEY"]
 except KeyError as e:
     logger.error(f"Missing environment variable: {e}")
     raise
@@ -36,29 +39,35 @@ except tweepy.TweepyException as e:
     logger.error(f"Failed to initialize Tweepy: {e}")
     raise
 
+# === Initialize Supabase Client ===
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+
 # === Load Prompts ===
 try:
     with open("IgPrompts900.json", "r", encoding="utf-8") as f:
         prompts = json.load(f)
         if not prompts:
-            logger.error("No prompts available in InstagramPrompts.json")
+            logger.error("No prompts available in IgPrompts900.json")
             raise ValueError("Empty prompts list")
-except FileNotFoundError:
-    logger.error("InstagramPrompts.json not found")
-    raise
-except (ValueError, KeyError) as e:
-    logger.error(f"Invalid prompt data: {e}")
+except Exception as e:
+    logger.error(f"Failed to load prompts: {e}")
     raise
 
-# === Load Last Used Prompt Index ===
-last_prompt_file = "last_prompt.txt"
+# === Load Last Used Prompt Index from Supabase ===
+try:
+    response = supabase.table('tweet_prompt_state').select('id', 'last_prompt_index').limit(1).execute()
+    if not response.data:
+        logger.error("No state row found in Supabase")
+        raise ValueError("State row missing")
 
-if not os.path.exists(last_prompt_file):
-    with open(last_prompt_file, "w") as f:
-        f.write("0")
+    state_row = response.data[0]
+    state_id = state_row['id']
+    last_index = state_row['last_prompt_index']
+    logger.info(f"Fetched last index {last_index} from Supabase")
 
-with open(last_prompt_file, "r") as f:
-    last_index = int(f.read().strip())
+except Exception as e:
+    logger.error(f"Error fetching state from Supabase: {e}")
+    raise
 
 # === Get Next Prompt ===
 next_index = last_index + 1
@@ -114,8 +123,12 @@ except tweepy.TweepyException as e:
     logger.error(f"Failed to post tweet: {e}")
     raise
 
-# === Update Last Used Prompt ===
-with open(last_prompt_file, "w") as f:
-    f.write(str(next_index))
+# === Update Last Used Prompt in Supabase ===
+try:
+    supabase.table('tweet_prompt_state').update({'last_prompt_index': next_index}).eq('id', state_id).execute()
+    logger.info(f"Updated Supabase index to {next_index}")
+except Exception as e:
+    logger.error(f"Failed to update Supabase state: {e}")
+    raise
 
 logger.info("Script execution finished successfully")
