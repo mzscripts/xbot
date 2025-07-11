@@ -7,6 +7,7 @@ from io import BytesIO
 import logging
 from time import sleep
 from supabase import create_client
+from PIL import Image, ImageEnhance
 
 # === Setup Logging ===
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -64,14 +65,12 @@ try:
     state_id = state_row['id']
     last_index = state_row['last_prompt_index']
     logger.info(f"Fetched last index {last_index} from Supabase")
-
 except Exception as e:
     logger.error(f"Error fetching state from Supabase: {e}")
     raise
 
 # === Get Next Prompt ===
 next_index = last_index + 1
-
 if next_index >= len(prompts):
     logger.info("All prompts have been used. Resetting to start.")
     next_index = 0
@@ -87,26 +86,45 @@ tweet_text = f"({next_index + 1}) {description}"
 if len(tweet_text) > 280:
     tweet_text = tweet_text[:277] + "..."
 
-# === Generate Image ===
+# === Image Enhancement Function ===
+def enhance_image(input_path, output_path, upscale_factor=2):
+    img = Image.open(input_path)
+    new_size = (img.width * upscale_factor, img.height * upscale_factor)
+    upscaled_img = img.resize(new_size, Image.LANCZOS)
+    sharp_img = ImageEnhance.Sharpness(upscaled_img).enhance(2.0)
+    final_img = ImageEnhance.Contrast(sharp_img).enhance(1.3)
+    final_img.save(output_path)
+
+# === Generate & Enhance Image ===
 try:
     encoded_prompt = quote(description)
     image_url = f"https://generative.mdzaiduiux.workers.dev/?prompt={encoded_prompt}"
     response = requests.get(image_url, timeout=30)
     response.raise_for_status()
-    img_data = response.content
-    logger.info(f"Image data retrieved for prompt {prompt_id}")
-except requests.RequestException as e:
-    logger.error(f"Failed to download image for prompt {prompt_id}: {e}")
+
+    # Save original image
+    orig_path = f"/tmp/{prompt_id}_orig.png"
+    with open(orig_path, "wb") as f:
+        f.write(response.content)
+
+    # Enhance image
+    enhanced_path = f"/tmp/{prompt_id}_enhanced.png"
+    enhance_image(orig_path, enhanced_path, upscale_factor=2)
+    logger.info(f"Enhanced image saved at: {enhanced_path}")
+
+except Exception as e:
+    logger.error(f"Image generation or enhancement failed: {e}")
     raise
 
 # === Upload Media ===
 for attempt in range(3):
     try:
-        img_file = BytesIO(img_data)
-        img_file.name = f"{prompt_id}.png"
-        media = api_v1.media_upload(filename=img_file.name, file=img_file)
-        logger.info("Media uploaded successfully")
-        break
+        with open(enhanced_path, "rb") as f:
+            img_file = BytesIO(f.read())
+            img_file.name = f"{prompt_id}_enhanced.png"
+            media = api_v1.media_upload(filename=img_file.name, file=img_file)
+            logger.info("Enhanced media uploaded successfully")
+            break
     except tweepy.TweepyException as e:
         logger.warning(f"Media upload attempt {attempt + 1} failed: {e}")
         if attempt == 2:
@@ -123,7 +141,7 @@ except tweepy.TweepyException as e:
     logger.error(f"Failed to post tweet: {e}")
     raise
 
-# === Update Last Used Prompt in Supabase ===
+# === Update Supabase Index ===
 try:
     supabase.table('tweet_prompt_state').update({'last_prompt_index': next_index}).eq('id', state_id).execute()
     logger.info(f"Updated Supabase index to {next_index}")
